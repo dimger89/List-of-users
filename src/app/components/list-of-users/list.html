@@ -27,15 +27,22 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>id</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Age</th>
+      <th><input type="text" ng-model="filters.id" ng-change="selectFilter(filters.id)"></th>
+      <th><input type="text" ng-model="filters.firstName" ng-change="selectFilter(filters.firstName)"></th>
+      <th><input type="text" ng-model="filters.lastName" ng-change="selectFilter(filters.lastName)"></th>
+      <th><input type="text" ng-model="filters.email" ng-change="selectFilter(filters.email)"></th>
+      <th><input type="text" ng-model="filters.age" ng-change="selectFilter(filters.age)"></th>
+    </tr>
+    <tr>
+      <th ng-click="orderByMe('id')">id</th>
+      <th ng-click="orderByMe('firstName')">First Name</th>
+      <th ng-click="orderByMe('lastName')">Last Name</th>
+      <th ng-click="orderByMe('email')">Email</th>
+      <th ng-click="orderByMe('age')">Age</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="user in users | limitTo : pagination.selectedNumber : pagination.showFrom">
+    <tr ng-repeat="user in users | limitTo : pagination.selectedNumber : pagination.showFrom | orderBy:myOrderBy | filter:filters.selected">
       <td>{{user.id}}</td>
       <td>{{user.firstName}}</td>
       <td>{{user.lastName}}</td>

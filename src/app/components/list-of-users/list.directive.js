@@ -23,6 +23,13 @@
         scope.spinner = false;
       }
 
+      scope.filters = {};
+
+      scope.selectFilter = function (filter) {
+        console.log(filter);
+        scope.filters.selected = filter;
+      };
+
       scope.pagination = {
         paginationType: ['traditional', 'endless scroll'],
         paginationNumber: [5, 10, 15],
@@ -70,6 +77,10 @@
           (!scope.$$phase) && scope.$apply();
         }
       });
+
+      scope.orderByMe = function(x) {
+        scope.myOrderBy = x;
+      }
 
     }
 
