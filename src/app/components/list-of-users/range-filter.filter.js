@@ -9,7 +9,7 @@
       return function(items, rangeInfo) {
         var filtered = [];
         if(rangeInfo) {
-          var rangeObj = JSON.parse(rangeInfo);
+          var rangeObj = angular.fromJson(rangeInfo);
           var min = parseInt(rangeObj.minVal);
           var max = parseInt(rangeObj.maxVal);
           angular.forEach(items, function(item) {
