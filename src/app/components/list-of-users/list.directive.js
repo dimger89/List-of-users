@@ -26,6 +26,7 @@
       scope.filters = {};
 
       scope.filters.age = [
+        {minVal: 0, maxVal: 100},
         {minVal: 0, maxVal: 10},
         {minVal: 10, maxVal: 20},
         {minVal: 20, maxVal: 30},
