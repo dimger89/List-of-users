@@ -14,14 +14,14 @@
           firstName: 'Sasha',
           lastName: 'Sidorov',
           email: 'sashas@gmail.com',
-          age: 29
+          age: 18
         },
         {
           id: 0,
           firstName: 'Leha',
           lastName: 'Popov',
           email: 'sashas@gmail.com',
-          age: 29
+          age: 35
         },
         {
           id: 0,
@@ -35,7 +35,7 @@
           firstName: 'Sasha',
           lastName: 'Sidorov',
           email: 'sashas@gmail.com',
-          age: 29
+          age: 45
         },
         {
           id: 0,
@@ -104,7 +104,7 @@
           id: 0,
           firstName: 'Leha',
           lastName: 'Popov',
-          email: 'sashas@gmail.com',
+          email: 'opov@gmail.com',
           age: 29
         },
         {
