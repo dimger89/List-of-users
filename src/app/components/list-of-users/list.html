@@ -27,11 +27,41 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><input type="text" ng-model="filters.id" ng-change="selectFilter(filters.id)"></th>
-      <th><input type="text" ng-model="filters.firstName" ng-change="selectFilter(filters.firstName)"></th>
-      <th><input type="text" ng-model="filters.lastName" ng-change="selectFilter(filters.lastName)"></th>
-      <th><input type="text" ng-model="filters.email" ng-change="selectFilter(filters.email)"></th>
-      <th><input type="text" ng-model="filters.age" ng-change="selectFilter(filters.age)"></th>
+      <th><input type="text"
+                 placeholder="filter by me"
+                 class="form-control"
+                 ng-model="filters.id"
+                 ng-change="selectFilter(filters.id)">
+      </th>
+      <th>
+        <input type="text"
+               placeholder="filter by me"
+               class="form-control"
+               ng-model="filters.firstName"
+               ng-change="selectFilter(filters.firstName)">
+      </th>
+      <th>
+        <input type="text"
+               placeholder="filter by me"
+               class="form-control"
+               ng-model="filters.lastName"
+               ng-change="selectFilter(filters.lastName)">
+      </th>
+      <th>
+        <input type="text"
+               placeholder="filter by me"
+               class="form-control"
+               ng-model="filters.email"
+               ng-change="selectFilter(filters.email)">
+      </th>
+      <th>
+        <select type="text"
+                placeholder="filter by me"
+                class="form-control"
+                ng-model="filters.age.selected">
+          <option value="{{option}}" ng-repeat="option in filters.age track by $index">{{option.minVal}} - {{option.maxVal}}</option>
+        </select>
+      </th>
     </tr>
     <tr>
       <th ng-click="orderByMe('id')">id</th>
@@ -42,7 +72,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="user in users | limitTo : pagination.selectedNumber : pagination.showFrom | orderBy:myOrderBy | filter:filters.selected">
+    <tr ng-repeat="user in users | limitTo : pagination.selectedNumber : pagination.showFrom | orderBy:myOrderBy | filter:filters.selected | rangeFilter:filters.age.selected">
       <td>{{user.id}}</td>
       <td>{{user.firstName}}</td>
       <td>{{user.lastName}}</td>

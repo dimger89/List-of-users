@@ -25,8 +25,15 @@
 
       scope.filters = {};
 
+      scope.filters.age = [
+        {minVal: 0, maxVal: 10},
+        {minVal: 10, maxVal: 20},
+        {minVal: 20, maxVal: 30},
+        {minVal: 30, maxVal: 40},
+        {minVal: 40, maxVal: 99}
+      ];
+
       scope.selectFilter = function (filter) {
-        console.log(filter);
         scope.filters.selected = filter;
       };
 
