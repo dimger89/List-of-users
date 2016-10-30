@@ -5,9 +5,9 @@
     .module('trinetix')
     .directive('listOfUsers', listOfUsers);
 
-  listOfUsers.$inject = ['ListService', '$log', '$timeout'];
+  listOfUsers.$inject = ['ListService', '$log', '$timeout', '$window'];
 
-  function listOfUsers(ListService, $log, $timeout) {
+  function listOfUsers(ListService, $log, $timeout, $window) {
     var directive = {
       templateUrl: 'app/components/list-of-users/list.html',
       link: link,
@@ -16,24 +16,60 @@
     return directive;
 
     function link(scope) {
-      scope.spinner = true;
-      scope.users = ListService.getUsers();
-      scope.spinner = false;
+      loadUsers();
+      function loadUsers() {
+        scope.spinner = true;
+        scope.users = ListService.getUsers();
+        scope.spinner = false;
+      }
 
       scope.pagination = {
         paginationType: ['traditional', 'endless scroll'],
         paginationNumber: [5, 10, 15],
         selectedType: 'traditional',
         selectedNumber: 10,
+        showFrom: 0,
         labels: function () {
-          $log.log(scope.labels);
           $timeout(function () {
-            scope.labels = (scope.users.length/scope.pagination.selectedNumber)
+            scope.labels = (scope.users.length/scope.pagination.selectedNumber);
           }, 0);
         }
       };
 
-      scope.labels = scope.pagination.labels();
+      scope.pagination.labels();
+
+      scope.getNumber = function(num) {
+        return new Array(num);
+      };
+
+      scope.setShowFrom = function (val) {
+        if(val===0) {
+          scope.pagination.showFrom = 0
+        } else {
+          scope.pagination.showFrom = scope.pagination.selectedNumber * val;
+        }
+      };
+
+      function resetPagination() {
+        scope.pagination.selectedNumber = 10;
+        scope.pagination.showFrom = 0;
+      }
+
+      scope.checkPagination = function (selectedType) {
+        resetPagination();
+        if (selectedType === 'endless scroll') {
+          scope.pagination.selectedNumber = 35;
+        }
+      };
+
+      angular.element($window).on("scroll", function() {
+        if  ($(window).scrollTop() == $(document).height() - $(window).height()) {
+          if(scope.pagination.selectedNumber <= scope.users.length) {
+            scope.pagination.selectedNumber += 10;
+          }
+          (!scope.$$phase) && scope.$apply();
+        }
+      });
 
     }
 

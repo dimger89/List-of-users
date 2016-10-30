@@ -16,7 +16,7 @@
     return directive;
   }
 
-  function MainController($timeout, toastr, $log) {
+  function MainController($timeout, toastr) {
     var vm = this;
     vm.awesomeThings = [];
     vm.classAnimation = '';
@@ -33,7 +33,6 @@
     }
 
     function showToastr() {
-      $log.log(12);
       toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
       vm.classAnimation = '';
     }
