@@ -1,9 +1,9 @@
 # List-of-users
 
 to start project you should run next commands:
-npm install
-bower install
-gulp serve
+# npm install
+# bower install
+# gulp serve
 
 after that project will run at - localhost:3000
 
