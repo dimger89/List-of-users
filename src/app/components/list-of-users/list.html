@@ -129,7 +129,7 @@
 </table>
 <ul class="pagination"
     ng-if="pagination.selectedType === 'traditional'">
-  <li ng-repeat="page in getNumber(labels) track by $index">
+  <li ng-repeat="page in paginationNumbers track by $index">
     <a href="#" ng-click="setShowFrom($index)">{{$index+1}}</a>
   </li>
 </ul>

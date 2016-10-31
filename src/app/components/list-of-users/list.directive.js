@@ -24,6 +24,7 @@
       }
 
       scope.filters = {};
+      scope.paginationNumbers = [];
 
       scope.filters.age = [
         {minVal: 0, maxVal: 100},
@@ -42,16 +43,16 @@
         showFrom: 0,
         labels: function () {
           $timeout(function () {
+            scope.paginationNumbers = [];
             scope.labels = (scope.users.length/scope.pagination.selectedNumber);
+            for(var i = 0; i < scope.labels; i++) {
+              scope.paginationNumbers.push(i+1);
+            }
           }, 0);
         }
       };
 
       scope.pagination.labels();
-
-      scope.getNumber = function(num) {
-        return new Array(num);
-      };
 
       scope.setShowFrom = function (val) {
         if(val===0) {
