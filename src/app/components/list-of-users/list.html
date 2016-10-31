@@ -24,45 +24,31 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="stringFilter">Filter everything</label>
+      <input type="text"
+             id="stringFilter"
+             placeholder="Filter everything"
+             class="form-control"
+             ng-model="filtersSearch">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="rangeFilter">Filter by age</label>
+      <select type="text"
+              id="rangeFilter"
+              class="form-control"
+              ng-model="filters.age.selected">
+        <option value="{{option}}" ng-repeat="option in filters.age track by $index">{{option.minVal}} - {{option.maxVal}}</option>
+      </select>
+    </div>
+  </div>
+</div>
 <table class="table table-striped">
   <thead>
-    <tr>
-      <th><input type="text"
-                 placeholder="filter by me"
-                 class="form-control"
-                 ng-model="filters.id"
-                 ng-change="selectFilter(filters.id)">
-      </th>
-      <th>
-        <input type="text"
-               placeholder="filter by me"
-               class="form-control"
-               ng-model="filters.firstName"
-               ng-change="selectFilter(filters.firstName)">
-      </th>
-      <th>
-        <input type="text"
-               placeholder="filter by me"
-               class="form-control"
-               ng-model="filters.lastName"
-               ng-change="selectFilter(filters.lastName)">
-      </th>
-      <th>
-        <input type="text"
-               placeholder="filter by me"
-               class="form-control"
-               ng-model="filters.email"
-               ng-change="selectFilter(filters.email)">
-      </th>
-      <th>
-        <select type="text"
-                placeholder="filter by me"
-                class="form-control"
-                ng-model="filters.age.selected">
-          <option value="{{option}}" ng-repeat="option in filters.age track by $index">{{option.minVal}} - {{option.maxVal}}</option>
-        </select>
-      </th>
-    </tr>
     <tr>
       <th ng-click="orderByMe('id')">id</th>
       <th ng-click="orderByMe('firstName')">First Name</th>
@@ -72,7 +58,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="user in users | orderBy:myOrderBy | filter:filters.selected | rangeFilter:filters.age.selected | limitTo : pagination.selectedNumber : pagination.showFrom">
+    <tr ng-repeat="user in users | orderBy:myOrderBy | filter:filtersSearch | rangeFilter:filters.age.selected | limitTo : pagination.selectedNumber : pagination.showFrom">
       <td>{{user.id}}</td>
       <td>{{user.firstName}}</td>
       <td>{{user.lastName}}</td>

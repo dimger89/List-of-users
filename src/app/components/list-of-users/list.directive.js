@@ -34,10 +34,6 @@
         {minVal: 40, maxVal: 99}
       ];
 
-      scope.selectFilter = function (filter) {
-        scope.filters.selected = filter;
-      };
-
       scope.pagination = {
         paginationType: ['traditional', 'endless scroll'],
         paginationNumber: [5, 10, 15],
