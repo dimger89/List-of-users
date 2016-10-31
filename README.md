@@ -5,7 +5,8 @@ to start project you should run next commands:
 # bower install
 # gulp serve
 
-after that project will run at - # localhost:3000
+after that project will run at 
+# localhost:3000
 
 to sort items in table you should click on table headers of column
 to inline editing you should double click on text
