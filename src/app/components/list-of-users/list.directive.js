@@ -97,6 +97,7 @@
           delete scope.users[val];
           scope.checkedItems = [];
         });
+        toastr.success('Success!', 'Multiple deletion');
       };
 
       scope.deleteUser = function(index, user) {

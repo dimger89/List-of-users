@@ -70,14 +70,54 @@
   </thead>
   <tbody>
     <tr ng-repeat="user in users | orderBy:myOrderBy | filter:filtersSearch | rangeFilter:filters.age.selected | limitTo : pagination.selectedNumber : pagination.showFrom">
-      <td><input type="checkbox"
+      <td>
+        <input type="checkbox"
                  ng-model="user.checked"
-                 ng-change="addChecked($index)"></td>
-      <td>{{user.id}}</td>
-      <td>{{user.firstName}}</td>
-      <td>{{user.lastName}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.age}}</td>
+                 ng-change="addChecked($index)">
+      </td>
+      <td>
+        <div>{{user.id}}</div>
+      </td>
+      <td>
+        <div ng-dblclick="user.showInput.firstName=true"
+             ng-hide="user.showInput.firstName">
+          {{user.firstName}}
+        </div>
+        <input type="text"
+               ng-show="user.showInput.firstName"
+               ng-blur="user.showInput.firstName=false"
+               ng-model="user.firstName"
+               class="form-control">
+      </td>
+      <td>
+        <div ng-dblclick="user.showInput.lastName=true"
+             ng-hide="user.showInput.lastName">
+          {{user.lastName}}
+        </div>
+        <input type="text"
+               ng-show="user.showInput.lastName"
+               ng-blur="user.showInput.lastName=false"
+               ng-model="user.lastName"
+               class="form-control">
+      </td>
+      <td>
+        <div ng-dblclick="user.showInput.email=true"
+             ng-hide="user.showInput.email">{{user.email}}</div>
+        <input type="text"
+               ng-show="user.showInput.email"
+               ng-blur="user.showInput.email=false"
+               class="form-control"
+               ng-model="user.email">
+      </td>
+      <td>
+        <div ng-dblclick="user.showInput.age=true"
+             ng-hide="user.showInput.age">{{user.age}}</div>
+        <input type="text"
+               ng-show="user.showInput.age"
+               ng-blur="user.showInput.age=false"
+               class="form-control"
+               ng-model="user.age">
+      </td>
       <td>
         <button class="btn btn-default"
                 ng-click="openModal(user, $index, users)">Edit</button>
