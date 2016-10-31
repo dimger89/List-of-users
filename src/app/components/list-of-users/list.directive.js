@@ -74,7 +74,7 @@
       };
 
       angular.element($window).on("scroll", function() {
-        if  ($(window).scrollTop() == $(document).height() - $(window).height()) {
+        if  ($(window).scrollTop() == $(document).height() - $(window).height() && scope.pagination.selectedType === 'endless scroll') {
           if(scope.pagination.selectedNumber <= scope.users.length) {
             scope.pagination.selectedNumber += 10;
           }
