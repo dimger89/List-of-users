@@ -47,9 +47,19 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <button class="btn btn-danger"
+              ng-click="deleteAllChecked()"
+              ng-disabled="!checkedItems.length">Delete all checked items</button>
+    </div>
+  </div>
+</div>
 <table class="table table-striped">
   <thead>
     <tr>
+      <th></th>
       <th ng-click="orderByMe('id')">id</th>
       <th ng-click="orderByMe('firstName')">First Name</th>
       <th ng-click="orderByMe('lastName')">Last Name</th>
@@ -60,6 +70,9 @@
   </thead>
   <tbody>
     <tr ng-repeat="user in users | orderBy:myOrderBy | filter:filtersSearch | rangeFilter:filters.age.selected | limitTo : pagination.selectedNumber : pagination.showFrom">
+      <td><input type="checkbox"
+                 ng-model="user.checked"
+                 ng-change="addChecked($index)"></td>
       <td>{{user.id}}</td>
       <td>{{user.firstName}}</td>
       <td>{{user.lastName}}</td>

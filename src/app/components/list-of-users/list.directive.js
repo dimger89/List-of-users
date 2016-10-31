@@ -86,6 +86,19 @@
         scope.myOrderBy = x;
       };
 
+      scope.checkedItems = [];
+
+      scope.addChecked = function(index) {
+        scope.checkedItems.push(index);
+      };
+
+      scope.deleteAllChecked = function() {
+        scope.checkedItems.forEach(function(val){
+          delete scope.users[val];
+          scope.checkedItems = [];
+        });
+      };
+
       scope.deleteUser = function(index, user) {
         scope.users.splice(index, 1);
         toastr.success('Success!', user.firstName + ' was deleted');
