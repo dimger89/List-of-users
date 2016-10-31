@@ -5,9 +5,9 @@
     .module('trinetix')
     .directive('listOfUsers', listOfUsers);
 
-  listOfUsers.$inject = ['ListService', '$log', '$timeout', '$window'];
+  listOfUsers.$inject = ['ListService', '$log', '$timeout', '$window', 'toastr', '$uibModal'];
 
-  function listOfUsers(ListService, $log, $timeout, $window) {
+  function listOfUsers(ListService, $log, $timeout, $window, toastr, $uibModal) {
     var directive = {
       templateUrl: 'app/components/list-of-users/list.html',
       link: link,
@@ -84,10 +84,40 @@
 
       scope.orderByMe = function(x) {
         scope.myOrderBy = x;
-      }
+      };
 
+      scope.deleteUser = function(index, user) {
+        scope.users.splice(index, 1);
+        toastr.success('Success!', user.firstName + ' was deleted');
+      };
+
+      scope.openModal = function (user, index, users, parentSelector) {
+        var parentElem = parentSelector ?
+            angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+        var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/components/modal/user-editing.html',
+          controller: 'ModalInstanceCtrl',
+          controllerAs: '$ctrl',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            user: function() {
+              return user;
+            },
+            index: function() {
+              return index;
+            },
+            users: function() {
+              return users;
+            }
+          }
+        });
     }
 
   }
 
+}
 })();

@@ -55,6 +55,7 @@
       <th ng-click="orderByMe('lastName')">Last Name</th>
       <th ng-click="orderByMe('email')">Email</th>
       <th ng-click="orderByMe('age')">Age</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -64,6 +65,12 @@
       <td>{{user.lastName}}</td>
       <td>{{user.email}}</td>
       <td>{{user.age}}</td>
+      <td>
+        <button class="btn btn-default"
+                ng-click="openModal(user, $index, users)">Edit</button>
+        <button class="btn btn-danger"
+                ng-click="deleteUser($index, user)">Delete</button>
+      </td>
     </tr>
   </tbody>
 </table>
